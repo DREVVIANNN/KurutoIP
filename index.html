@@ -1,49 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InPanels | Panel Bot For WhatsApp</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="a82ghh8et7g2gdaf9990juekl20jeobn-removebg-preview.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-</head>
-<body>
-    
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+
+      <link rel="shortcut icon" href="a82ghh8et7g2gdaf9990juekl20jeobn-removebg-preview.png" type="image/x-icon">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+
+      <title>InPanels | Panel For WhatsApp Bot</title>
+   </head>
+   <body>
+
       <!-- Loading Screen -->
       <div id="loading">
-        <img src="a82ghh8et7g2gdaf9990juekl20jeobn.jpg" alt="Loading...">
-    </div>
+         <img src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="Loading...">
+     </div>
 
-      <!-- Navigation bar containing the logo and Google Login button -->
-    <div class="navbar">
-        <div class="logo"><img src="a82ghh8et7g2gdaf9990juekl20jeobn.jpg" alt="image.bin"> InPanels</div>
-            <div class="hamburger" onclick="toggleMenu()">
-                <i class="ri-menu-line"></i>
+      <!--=============== HEADER ===============-->
+      <header class="header" id="header">
+         <div class="header__container">
+            <a href="#" class="header__logo">
+               <img src="a82ghh8et7g2gdaf9990juekl20jeobn.jpg" alt="">
+               <span>PT InPanels</span>
+            </a>
+            
+            <button class="header__toggle" id="header-toggle">
+               <i class="ri-menu-line"></i>
+            </button>
+         </div>
+      </header>
+
+      <!--=============== SIDEBAR ===============-->
+      <nav class="sidebar" id="sidebar">
+         <div class="sidebar__container">
+            <div class="sidebar__user">
+               <div class="sidebar__img">
+                  <img src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="image">
+               </div>
+   
+               <div class="sidebar__info">
+                  <h3>PT InPanels <i class="ri-verified-badge-fill"></i></h3>
+                  <span>help-center@inpanels.site</span>
+               </div>
             </div>
-        </div>
-        
-        <!-- Sidebar Menu -->
-        <div class="menu-overlay" id="menuOverlay"></div>
-        <div class="menu" id="menu">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Pricing</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-    </div>
 
-    <!-- Main content section inside a white container with a box shadow -->
-    <div class="info-container">
-        <h2><img src="a82ghh8et7g2gdaf9990juekl20jeobn.jpg" alt="image.bin">InPanels</h2>
-        <p class="description">
-            On Development...
-        </p>
+            <div class="sidebar__content">
+               <div>
+                  <h3 class="sidebar__title">MENU</h3>
+
+                  <div class="sidebar__list">
+                     <a href="#" class="sidebar__link active-link">
+                        <i class="ri-home-3-fill"></i>
+                        <span>Home</span>
+                     </a>
+                     
+                     <a href="all-panel.html" class="sidebar__link">
+                        <i class="ri-shopping-cart-2-fill"></i>
+                        <span>All Panels</span>
+                     </a>
+
+                     <a onclick="comingSoon()" class="sidebar__link">
+                        <i class="ri-megaphone-fill"></i>
+                        <span>Announcement</span>
+                     </a>
+                  </div>
+               </div>
+
+               <div>
+                  <h3 class="sidebar__title">More</h3>
+
+                  <div class="sidebar__list">
+                     <a onclick="comingSoon()" class="sidebar__link">
+                        <i class="ri-send-plane-fill"></i>
+                        <span>Contact Us</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="sidebar__actions">
+               <button>
+                  <i class="ri-moon-clear-fill sidebar__link sidebar__theme" id="theme-button">
+                     <span>Theme</span>
+                  </i>
+               </button>
+            </div>
+         </div>
+      </nav>
+
+      <!--=============== MAIN ===============-->
+      <main class="main container" id="main">
+         <h1>InPanels</h1>
+         <p>
+            <b>InPanels - Your Trusted WhatsApp Bot Panel Provider</b> <br>
+            InPanels specializes in providing high-quality WhatsApp <br>
+            bot panels designed to automate and enhance your messaging <br>
+            experience. With a user-friendly interface, powerful automation <br>
+            tools, and seamless integration, InPanels helps businesses and <br>
+            individuals manage WhatsApp interactions efficiently. 
+         </p>
+
+         <section class="pricing-section">
+            <h2>Choose Your Plan</h2>
+            <div class="pricing-container">
+                <!-- Basic Plan -->
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <p class="price">Rp5.000<span>/Permanent</span></p>
+                    <ul>
+                        <li>✔ Bisa Buat Panel Sepuasnya</li>
+                        <li>✔ Bisa Jual Panel</li>
+                        <li>✔ Jamin Balmod</li>
+                    </ul>
+                    <a href="http://wa.me/62895808870907" class="btn">Get Started</a>
+                </div>
     
+                <!-- Standard Plan -->
+                <div class="pricing-card popular">
+                    <h3>Best Seller</h3>
+                    <p class="price">Rp7.000<span>/Permanent</span></p>
+                    <ul>
+                     <li>✔ Bisa Buat Panel Sepuasnya</li>
+                     <li>✔ Bisa Jual Panel</li>
+                     <li>✔ Bisa Open Reseller Panel</li>
+                     <li>✔ Bisa Open Bot PushKontak</li>
+                    </ul>
+                    <a href="http://wa.me/62895808870907" class="popular-btn">Get Started</a>
+                </div>
+    
+                <!-- Premium Plan -->
+                <div class="pricing-card">
+                    <h3>Premium</h3>
+                    <p class="price">Rp12.000<span>/Permanent</span></p>
+                    <ul>
+                     <li>✔ Bisa Open Admin Panel</li>
+                     <li>✔ Bisa Open Reseller Panel</li>
+                     <li>✔ Bisa Buat Panel Sepuasnya</li>
+                     <li>✔ Bisa Jual Panel</li>
+                    </ul>
+                    <a href="http://wa.me/62895808870907" class="btn">Get Started</a>
+                </div>
+            </div>
+        </section>
 
-    <script src="script.js"></script>
-</body>
+        <img class="home-banner" src="a82ghh8et7g2gdaf9990juekl20jeobn-removebg-preview.png" alt="" class="banner">
+      </main>
+      
+      <!--=============== MAIN JS ===============-->
+      <script src="assets/js/main.js"></script>
+   </body>
 </html>
