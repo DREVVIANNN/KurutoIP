@@ -35,6 +35,26 @@
          </div>
       </header>
 
+       <!-- Chat trigger -->
+       <button class="chat-btn" onclick="toggleChat()">💬 Ask InP</button>
+
+       <!-- Chat popup -->
+        <div class="chat-popup" id="chatBox">
+           <div class="chat-header">
+              <img src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="InP A-1" class="ai-avatar">
+              <span>InP A-1</span>
+            </div>             
+            <div class="chat-body" id="chatMessages">
+            <div class="chat-bubble ai-msg">Hi there! What would you like to know?</div>
+            </div>
+            <div class="choice-buttons" id="choiceButtons">
+            <button onclick="selectOption('Who is CEO Of InPanels?')">✨ Who is CEO Of InPanels?</button>
+            <button onclick="selectOption('Who is DREVVIANN?')">✨ Who is DREVVIANN?</button>
+            <button onclick="selectOption('Are there any active discounts?')">Are there any active discounts?</button>
+            <button onclick="selectOption('I got a bug on the website')">I got a bug on the website</button>
+            </div>
+        </div>
+
       <!--=============== SIDEBAR ===============-->
       <nav class="sidebar" id="sidebar">
          <div class="sidebar__container">
@@ -80,7 +100,7 @@
                   <h3 class="sidebar__title">More</h3>
 
                   <div class="sidebar__list">
-                     <a onclick="comingSoon()" class="sidebar__link">
+                     <a href="contact-us.html" class="sidebar__link">
                         <i class="ri-send-plane-fill"></i>
                         <span>Contact Us</span>
                      </a>
@@ -253,6 +273,7 @@
         </main>
       
       <!--=============== MAIN JS ===============-->
+      <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
       <script src="assets/js/main.js"></script>
    </body>
 </html>

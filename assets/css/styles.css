@@ -87,6 +87,42 @@ body.dark-theme {
   background-color: hsl(228, 16%, 40%);
 }
 
+/* Works on Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Optional: hide scrollbar when not scrolling */
+body::-webkit-scrollbar {
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+body:hover::-webkit-scrollbar {
+  opacity: 1;
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+}
+
+
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   margin-inline: 1.5rem;
@@ -565,6 +601,276 @@ b i {
 .copyright{
   margin-top: 1rem;
 }
+
+.chat-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #1DA1F2;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 320px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  overflow: hidden;
+  z-index: 1000;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.chat-popup.show {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chat-popup.hide {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.chat-header {
+  background-color: #1DA1F2;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chat-body {
+  padding: 10px;
+  height: 250px;
+  overflow-y: auto;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  word-wrap: break-word;
+}
+
+.user-msg {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+
+.ai-msg {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+}
+
+.typing {
+  font-style: italic;
+  color: gray;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.4; }
+}
+
+.choice-buttons {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 8px;
+}
+
+.choice-buttons button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.choice-buttons button:hover {
+  background-color: #e0e0e0;
+}
+
+.choice-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px;
+}
+
+.contact-container {
+  max-width: 800px;
+  margin: 50px auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.contact-info {
+  background: #1DA1F2;
+  color: white;
+  padding: 40px;
+  flex: 1 1 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-info h2 {
+  margin-top: 0;
+}
+
+.contact-info p {
+  margin: 10px 0;
+}
+
+.contact-form {
+  flex: 2 1 400px;
+  padding: 40px;
+}
+
+.contact-form h2 {
+  margin-bottom: 20px;
+}
+
+/* Contact form container */
+form#contact-form {
+  max-width: 500px;
+  margin: 60px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Form elements */
+form#contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+form#contact-form input,
+form#contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  resize: none;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+form#contact-form input:focus,
+form#contact-form textarea:focus {
+  border-color: #1DA1F2;
+  outline: none;
+}
+
+/* Submit button */
+form#contact-form button {
+  background-color: #1DA1F2;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+form#contact-form button:hover {
+  background-color: #0d8ddb;
+}
+
+/* Toast (notification message) */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  background-color: #1DA1F2;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 9999;
+  pointer-events: none;
+  max-width: 90%;
+  text-align: center;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* 👇 Only for small screens (Android phones, tablets etc) */
+@media screen and (max-width: 768px) {
+  .toast {
+    top: 20px;
+    bottom: auto;
+    width: max-content;
+    transform: translateX(-50%) translateY(-30px);
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .contact-info, .contact-form {
+    padding: 30px;
+  }
+}
+
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */

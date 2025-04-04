@@ -61,10 +61,10 @@
                      
                      <a href="all-panel.html" class="sidebar__link">
                         <i class="ri-shopping-cart-2-fill"></i>
-                        <span>All Panels</span>
+                        <span>Shop</span>
                      </a>
 
-                     <a href="#" class="sidebar__link active-link">
+                     <a href="syarat-ketentuan.html" class="sidebar__link">
                         <i class="ri-file-list-3-fill"></i>
                         <span>Syarat Dan Ketentuan</span>
                      </a>
@@ -80,7 +80,7 @@
                   <h3 class="sidebar__title">More</h3>
 
                   <div class="sidebar__list">
-                     <a href="contact-us.html" class="sidebar__link">
+                     <a href="#" class="sidebar__link active-link">
                         <i class="ri-send-plane-fill"></i>
                         <span>Contact Us</span>
                      </a>
@@ -105,47 +105,38 @@
             📢 <span>@InPanels CEO <i class="ri-verified-badge-fill"></i>:</span> 🛒 Hurry! <b>RAM Unlimited!</b> <b>50% OFF!</b> Visit the shop and grab the deal before it's gone!
           </div>
 
-          <div class="announcement">
-            <div class="content">
-              <div class="message">
-               <h1>Syarat Dan Ketentuan</h1>
-               <b>Syarat Dan Ketentuan:</b> <br>
-               * Server private & kualitas terbaik! <br>
-               * Script bot dijamin aman (anti drama/maling) <br>
-               * Garansi 10 hari (1x replace) <br>
-               * Server anti delay/lemot! <br>
-               * Claim garansi wajib bawa bukti transaksi <br>
-               *NOTE: PRIV MAHAL KARNA KUALITAS <br> BRE LOGIN PAKE APK, ANTISIPASI DDoS* <br> <br>
-
-               <b>CEO: Kuruto <i class="ri-verified-badge-fill"></i></b> <br>
-               <b>Logo Designer: DREVVIANN <i class="ri-verified-badge-fill"></i></b> <br>
-               <b>Web Development: DREVVIANN <i class="ri-verified-badge-fill"></i></b> <br>
-              </div>
+         <div class="contact-container">
+            <div class="contact-info">
+              <p>📧 Email: support@inpanels.site</p>
+              <p>🌐 Website: www.inpanels.site</p>
+              <p>📍 Address: Jakarta, Indonesia</p>
+              <p>⏰ Open 24/7, Everyday</p>
+            </div>
+          
+            <div class="contact-form">
+              <h2>Contact Us</h2>
+              <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleSubmit(event)">
+               <input type="hidden" name="access_key" value="e722d3ae-0c77-4eae-aa19-3618e9f38bc5" />
+               <input type="hidden" name="subject" value="New Contact Form Message" />
+               <input type="hidden" name="from_name" value="Website Contact Form" />
+             
+               <label for="name">Name</label>
+               <input type="text" name="name" required>
+             
+               <label for="email">Email</label>
+               <input type="email" name="email" required>
+             
+               <label for="message">Message</label>
+               <textarea name="message" required></textarea>
+             
+               <button type="submit">📧 Send Message</button>
+             </form>
+             
+             <!-- Toast Notification -->
+             <div id="toast" class="toast">Message sent successfully! 📩</div>
+             
             </div>
           </div>
-
-           <!-- Chat trigger -->
-        <button class="chat-btn" onclick="toggleChat()">💬 Ask InP</button>
-
-        <!-- Chat popup -->
-         <div class="chat-popup" id="chatBox">
-            <div class="chat-header">
-               <img src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="InP A-1" class="ai-avatar">
-               <span>InP A-1</span>
-             </div>             
-             <div class="chat-body" id="chatMessages">
-             <div class="chat-bubble ai-msg">Hi there! What would you like to know?</div>
-             </div>
-             <div class="choice-buttons" id="choiceButtons">
-             <button onclick="selectOption('Who is CEO Of InPanels?')">✨ Who is CEO Of InPanels?</button>
-             <button onclick="selectOption('Who is DREVVIANN?')">✨ Who is DREVVIANN?</button>
-             <button onclick="selectOption('Are there any active discounts?')">Are there any active discounts?</button>
-             <button onclick="selectOption('I got a bug on the website')">I got a bug on the website</button>
-             </div>
-         </div>
-
-            <p class="copyright">&#169; 2025 InPanels. All rights reserved.</p>
-         </p>
 
         <img class="home-banner" src="a82ghh8et7g2gdaf9990juekl20jeobn-removebg-preview.png" alt="" class="banner">
       </main>

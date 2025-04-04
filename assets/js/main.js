@@ -61,6 +61,7 @@ themeButton.addEventListener('click', () => {
 
 // Wait for 5 seconds before showing the content
 window.onload = function() {
+
     setTimeout(function() {
         // Add fade-out effect to loading screen
         document.getElementById("loading").classList.add("fade-out");
@@ -75,6 +76,119 @@ window.onload = function() {
     }, 3100); // 3100ms = 3.1 seconds
 };
 
-function comingSoon() {
-    alert("On Development...")
-}
+function toggleChat() {
+    const chat = document.getElementById('chatBox');
+  
+    if (chat.classList.contains('show')) {
+      chat.classList.remove('show');
+      chat.classList.add('hide');
+  
+      // Wait for animation to finish, then hide completely
+      setTimeout(() => {
+        chat.style.display = 'none';
+        chat.classList.remove('hide');
+      }, 300);
+    } else {
+      chat.style.display = 'flex'; // show first so animation can play
+      setTimeout(() => {
+        chat.classList.add('show');
+      }, 10); // short delay to allow transition to trigger
+    }
+  }
+  
+  
+
+  function selectOption(userChoice) {
+    const chat = document.getElementById('chatMessages');
+    const choices = document.getElementById('choiceButtons');
+
+    // Hide buttons
+    choices.style.display = "none";
+
+    // User message
+    const userMsg = document.createElement('div');
+    userMsg.classList.add('chat-bubble', 'user-msg');
+    userMsg.textContent = userChoice;
+    chat.appendChild(userMsg);
+
+    // Typing animation
+    const typingBubble = document.createElement('div');
+    typingBubble.classList.add('chat-bubble', 'ai-msg', 'typing');
+    typingBubble.textContent = "AI is typing...";
+    typingBubble.id = "typingBubble";
+    chat.appendChild(typingBubble);
+
+    chat.scrollTop = chat.scrollHeight;
+
+    // Simulate typing delay
+    setTimeout(() => {
+      typingBubble.remove();
+
+      const aiMsg = document.createElement('div');
+      aiMsg.classList.add('chat-bubble', 'ai-msg');
+      aiMsg.textContent = getAIResponse(userChoice);
+      chat.appendChild(aiMsg);
+
+      // Show choices again
+      choices.style.display = "flex";
+
+      chat.scrollTop = chat.scrollHeight;
+    }, 1200);
+  }
+
+  function getAIResponse(choice) {
+    switch (choice) {
+      case 'Who is CEO Of InPanels?':
+        return 'Kuruto is an CEO of InPanels Company, he selling a panel for whatsapp bot. also the price its very cheap.';
+      case 'Who is DREVVIANN?':
+        return 'DREVVIANN is an logo designer, and web development, also he its partner of the CEO.';
+      case 'Are there any active discounts?':
+        return 'Yes! RAM Unlimited are 50% off in the shop today!';
+      case 'I got a bug on the website':
+        return 'You can contact us on the Contact Menu on the navigation bar. Thanks for helping us to finding a bug on the website✨';
+      default:
+        return 'Hmm... I’m not sure about that one.';
+    }
+  }
+
+  function toggleChoices() {
+    const choices = document.getElementById('choiceButtons');
+    const toggleBtn = document.getElementById('toggleChoicesBtn');
+  
+    if (choices.style.display === 'none') {
+      choices.style.display = 'flex';
+      toggleBtn.innerHTML = '🔽 Hide Options';
+    } else {
+      choices.style.display = 'none';
+      toggleBtn.innerHTML = '🔼 Show Options';
+    }
+  }
+  
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+  
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" }
+    })
+    .then(response => {
+      if (response.ok) {
+        showToast("✅ Message sent successfully!");
+        form.reset();
+      } else {
+        showToast("❌ Failed to send. Try again later.");
+      }
+    })
+    .catch(() => {
+      showToast("⚠️ Network error. Please try again.");
+    });
+  }
+  
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 3000);
+  }
