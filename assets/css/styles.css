@@ -562,6 +562,10 @@ b i {
   opacity: 1;
 }
 
+.copyright{
+  margin-top: 1rem;
+}
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 456px) {
