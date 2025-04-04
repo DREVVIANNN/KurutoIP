@@ -114,7 +114,7 @@ function toggleChat() {
     // Typing animation
     const typingBubble = document.createElement('div');
     typingBubble.classList.add('chat-bubble', 'ai-msg', 'typing');
-    typingBubble.textContent = "AI is typing...";
+    typingBubble.textContent = "InP A-1 is typing...";
     typingBubble.id = "typingBubble";
     chat.appendChild(typingBubble);
 
@@ -151,19 +151,6 @@ function toggleChat() {
     }
   }
 
-  function toggleChoices() {
-    const choices = document.getElementById('choiceButtons');
-    const toggleBtn = document.getElementById('toggleChoicesBtn');
-  
-    if (choices.style.display === 'none') {
-      choices.style.display = 'flex';
-      toggleBtn.innerHTML = '🔽 Hide Options';
-    } else {
-      choices.style.display = 'none';
-      toggleBtn.innerHTML = '🔼 Show Options';
-    }
-  }
-  
   function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
