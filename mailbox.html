@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+
+      <link rel="shortcut icon" href="a82ghh8et7g2gdaf9990juekl20jeobn-removebg-preview.png" type="image/x-icon">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+
+      <title>InPanels | Panel For WhatsApp Bot</title>
+   </head>
+   <body>
+
+      <!-- Loading Screen -->
+      <div id="loading">
+         <img src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="Loading...">
+     </div>
+
+      <!--=============== HEADER ===============-->
+      <header class="header" id="header">
+         <div class="header__container">
+            <a href="https://www.inpanels.site" class="header__logo">
+               <img src="a82ghh8et7g2gdaf9990juekl20jeobn.jpg" alt="">
+               <span>PT InPanels</span>
+            </a>
+            
+            <button class="header__toggle" id="header-toggle">
+               <i class="ri-menu-line"></i>
+            </button>
+         </div>
+      </header>
+
+      <!--=============== SIDEBAR ===============-->
+      <nav class="sidebar" id="sidebar">
+         <div class="sidebar__container">
+            <div class="sidebar__user">
+               <div class="sidebar__img">
+                  <img src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="image">
+               </div>
+   
+               <div class="sidebar__info">
+                  <h3>PT InPanels</h3>
+                  <span>help-center@inpanels.site</span>
+               </div>
+            </div>
+
+            <div class="sidebar__content">
+               <div>
+                  <h3 class="sidebar__title">MENU</h3>
+
+                  <div class="sidebar__list">
+                     <a href="https://www.inpanels.site" class="sidebar__link">
+                        <i class="ri-home-3-fill"></i>
+                        <span>Home</span>
+                     </a>
+                     
+                     <a href="all-panel.html" class="sidebar__link">
+                        <i class="ri-shopping-cart-2-fill"></i>
+                        <span>All Panels</span>
+                     </a>
+
+                     <a href="syarat-ketentuan.html" class="sidebar__link">
+                        <i class="ri-file-list-3-fill"></i>
+                        <span>Syarat Dan Ketentuan</span>
+                     </a>
+
+                     <a href="announcement.html" class="sidebar__link">
+                        <i class="ri-megaphone-fill"></i>
+                        <span>Announcement</span>
+                     </a>
+                  </div>
+               </div>
+
+               <div>
+                  <h3 class="sidebar__title">More</h3>
+
+                  <div class="sidebar__list">
+                     <a href="contact-us.html" class="sidebar__link">
+                        <i class="ri-send-plane-fill"></i>
+                        <span>Contact Us</span>
+                     </a>
+
+                     <a href="mailbox.html" class="sidebar__link active-link">
+                        <i class="ri-mail-fill"></i>
+                        <span>Mailbox</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+
+            <div class="sidebar__actions">
+               <button>
+                  <i class="ri-moon-clear-fill sidebar__link sidebar__theme" id="theme-button">
+                     <span>Theme</span>
+                  </i>
+               </button>
+            </div>
+         </div>
+      </nav>
+
+      <!--=============== MAIN ===============-->
+      <main class="main container" id="main">
+
+         <a href="all-panel.html">
+            <div class="announcement-bar" id="devAnnouncement">
+               📢 <span>@System <i class="ri-verified-badge-fill"></i>:</span> 🛒 Hurry! <b>RAM Unlimited!</b> <b>50% OFF!</b> Visit the shop and grab the deal before it's gone!
+             </div>
+            </a>
+
+         <h1>eMailbox</h1>
+        
+         <div class="mail-container">
+            <h2>📬 Inbox</h2>
+            
+            <div class="mail-list">
+          
+              <div class="mini-mail-container" onclick="openMail('mail1')">
+                <div class="mail-item">
+                  <div class="sender-info">
+                    <img src="https://i.imgur.com/1Xq9BiF.png" alt="Developer">
+                    <div>
+                      <strong>@DevMaster</strong>
+                      <p>New features just released!</p>
+                    </div>
+                  </div>
+                  <h4>🛠 Update Notice</h4>
+                </div>
+              </div>
+          
+              <div class="mini-mail-container" onclick="openMail('mail2')">
+                <div class="mail-item">
+                  <div class="sender-info">
+                    <img src="https://i.imgur.com/1Xq9BiF.png" alt="Developer">
+                    <div>
+                      <strong>@DevMaster</strong>
+                      <p>Scheduled maintenance this weekend</p>
+                    </div>
+                  </div>
+                  <h4>⚠️ Maintenance Alert</h4>
+                </div>
+              </div>
+          
+            </div>
+          
+            <!-- Mail Popups (unchanged) -->
+            <div class="mail-popup" id="mail1">
+              <div class="mail-content">
+                <button class="close-btn" onclick="closeMail('mail1')">×</button>
+                <h3>🛠 Update Notice</h3>
+                <p>Hey there!<br><br>We’ve just launched new features including live chat, profile upgrades, and a responsive redesign! 🚀</p>
+              </div>
+            </div>
+          
+            <div class="mail-popup" id="mail2">
+              <div class="mail-content">
+                <button class="close-btn" onclick="closeMail('mail2')">×</button>
+                <h3>⚠️ Maintenance Alert</h3>
+                <p>Heads up!<br><br>We'll do maintenance on Saturday from 2 AM - 4 AM. Site may be temporarily unavailable.</p>
+              </div>
+            </div>
+          </div>
+          
+           <!-- Chat trigger -->
+        <button class="chat-btn" onclick="toggleChat()">💬 Ask InP</button>
+
+        <!-- Chat popup -->
+         <div class="chat-popup" id="chatBox">
+            <div class="chat-header">
+               <img src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="InP A-1" class="ai-avatar">
+               <span>InP A-1</span>
+             </div>             
+             <div class="chat-body" id="chatMessages">
+             <div class="chat-bubble ai-msg">Hi there! What would you like to know?</div>
+             </div>
+             <div class="choice-buttons" id="choiceButtons">
+             <button onclick="selectOption('Who is CEO Of InPanels?')">✨ Who is CEO Of InPanels?</button>
+             <button onclick="selectOption('Who is DREVVIANN?')">✨ Who is DREVVIANN?</button>
+             <button onclick="selectOption('Are there any active discounts?')">Are there any active discounts?</button>
+             <button onclick="selectOption('I got a bug on the website')">I got a bug on the website</button>
+             </div>
+         </div>
+
+        <img class="home-banner" src="a82ghh8et7g2gdaf9990juekl20jeobn-removebg-preview.png" alt="" class="banner">
+      </main>
+      
+      <!--=============== MAIN JS ===============-->
+      <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>

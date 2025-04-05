@@ -179,3 +179,21 @@ function toggleChat() {
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 3000);
   }
+
+  const copyButtons = document.querySelectorAll(".copy-btn");
+
+  copyButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const text = button.getAttribute("data-text");
+
+      navigator.clipboard.writeText(text).then(() => {
+        button.textContent = "✅ Copied!";
+        setTimeout(() => {
+          button.textContent = "📋 Copy Link";
+        }, 1500);
+      }).catch(err => {
+        console.error("Failed to copy:", err);
+        button.textContent = "❌ Error";
+      });
+    });
+  });
