@@ -143,7 +143,7 @@ function toggleChat() {
       case 'Who is DREVVIANN?':
         return 'DREVVIANN is an logo designer, and web development, also he its partner of the CEO.';
       case 'Are there any active discounts?':
-        return 'Yes! RAM Unlimited are 50% off in the shop today!';
+        return 'We have no discount active today.';
       case 'I got a bug on the website':
         return 'You can contact us on the Contact Menu on the navigation bar. Thanks for helping us to finding a bug on the website✨';
       default:
@@ -197,3 +197,129 @@ function toggleChat() {
       });
     });
   });
+
+  // Firebase config (replace with your own)
+  const firebaseConfig = {
+    apiKey: "AIzaSyA88e3gkmSPTwjKHyt666SbXuUWrFZyEOM",
+    authDomain: "globalchat-5a12d.firebaseapp.com",
+    projectId: "globalchat-5a12d",
+    storageBucket: "globalchat-5a12d.firebasestorage.app",
+    messagingSenderId: "178185092787",
+    appId: "1:178185092787:web:fb1c8fd006c26886aa3ac6"
+  };
+
+// Init
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const stars = document.querySelectorAll(".star");
+const message = document.getElementById("message");
+const errorMessage = document.getElementById("errorMessage");
+const ratingStats = document.getElementById("ratingStats");
+let selectedRating = 0;
+
+stars.forEach((star) => {
+  star.addEventListener("mouseover", () => {
+    resetStars();
+    highlightStars(star.dataset.value);
+  });
+
+  star.addEventListener("mouseout", () => {
+    resetStars(selectedRating);
+  });
+
+  star.addEventListener("click", () => {
+    selectedRating = star.dataset.value;
+    resetStars();
+    highlightStars(selectedRating);
+    checkUserRatingLimit(selectedRating);
+  });
+});
+
+function resetStars(selected = 0) {
+  stars.forEach((s) => {
+    s.classList.remove("hovered", "selected");
+    if (s.dataset.value <= selected) {
+      s.classList.add("selected");
+    }
+  });
+}
+
+function highlightStars(limit) {
+  stars.forEach((s) => {
+    if (s.dataset.value <= limit) {
+      s.classList.add("hovered");
+    }
+  });
+}
+
+function checkUserRatingLimit(rating) {
+  const userId = "user123"; // Here you can use real user ID (e.g., Firebase Auth user)
+  const now = new Date();
+
+  db.collection("user_ratings").doc(userId).get()
+    .then((doc) => {
+      if (doc.exists) {
+        const ratings = doc.data().ratings;
+        const recentRatings = ratings.filter(r => (now - r.timestamp) < 24 * 60 * 60 * 1000); // Last 24 hours
+        if (recentRatings.length < 5) {
+          // Allow rating
+          submitRating(rating, userId, recentRatings);
+        } else {
+          showError("You have already rated 5 times in the last 24 hours.");
+        }
+      } else {
+        // First-time user, allow rating
+        submitRating(rating, userId, []);
+      }
+    })
+    .catch((err) => {
+      console.error("Error checking rating limit:", err);
+      showError("You already rate us 5 times today.");
+    });
+}
+
+function showError(message) {
+  errorMessage.textContent = message;
+  errorMessage.style.display = "block";
+  setTimeout(() => {
+    errorMessage.style.display = "none";
+  }, 5000);
+}
+
+function submitRating(rating, userId, recentRatings) {
+  const now = new Date();
+  recentRatings.push({ rating: parseInt(rating), timestamp: now });
+
+  // Update user's ratings list in Firestore
+  db.collection("user_ratings").doc(userId).set({
+    ratings: recentRatings
+  })
+  .then(() => {
+    // Save the rating in the main collection for stats
+    db.collection("ratings").add({
+      rating: parseInt(rating),
+      createdAt: now
+    })
+    .then(() => {
+      // Show the success pop-up message
+      message.style.display = "block";
+      setTimeout(() => {
+        message.style.display = "none";
+      }, 5000);
+      errorMessage.textContent = "";
+    });
+  })
+  .catch((err) => {
+    console.error("Error saving rating:", err);
+    alert("Failed to submit rating");
+  });
+}
+
+// Real-time rating count and average
+db.collection("ratings").onSnapshot(snapshot => {
+  const ratings = snapshot.docs.map(doc => doc.data().rating);
+  const count = ratings.length;
+  const avg = count ? (ratings.reduce((a, b) => a + b, 0) / count).toFixed(1) : 0;
+  ratingStats.innerHTML = `⭐ Average Rating: <strong>${avg}</strong> from ${count} rating${count !== 1 ? 's' : ''}`;
+});

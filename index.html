@@ -121,9 +121,27 @@
             <img class="profile-photo" src="a8h32d9gg8gda9g-d8wgfdhh0ad-0-=2hr.jpg" alt="">
             <div class="content">
               <div class="username"><i class="ri-pushpin-fill"></i> @DREVVIANN <i class="ri-verified-badge-fill"></i></div>
-              <div class="message">Dontol di gebukin warga edisi 1. hari ini no promo ya dontol, admin lagi bokek ya anj. makanya beli panel tangan kanan biar enak ada promo terus</div>
+              <div class="message">Selamat datang!, hari ini no promo ya!, admin lagi butuh pemasukan. ayo di beli tangan kanannya!</div>
             </div>
           </div>
+
+          <div class="rating-container">
+            <h2>Rate Our Product</h2>
+            <div class="stars" id="stars">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+            <div class="submit-message" id="message">Thank you for your rating! ✅</div>
+            <div class="error-message" id="errorMessage"></div>
+            <div class="rating-stats" id="ratingStats" style="margin-top: 20px; font-size: 16px; color: #555;">
+              📊 Loading ratings...
+            </div>
+          </div>
+          
+
 
            <!-- Chat trigger -->
         <button class="chat-btn" onclick="toggleChat()">💬 Ask InP</button>
@@ -192,6 +210,8 @@
       </main>
       
       <!--=============== MAIN JS ===============-->
+      <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
       <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
       <script src="assets/js/main.js"></script>
    </body>
