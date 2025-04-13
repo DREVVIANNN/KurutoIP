@@ -214,7 +214,6 @@ const db = firebase.firestore();
 
 const stars = document.querySelectorAll(".star");
 const message = document.getElementById("message");
-const errorMessage = document.getElementById("errorMessage");
 const ratingStats = document.getElementById("ratingStats");
 let selectedRating = 0;
 
@@ -232,7 +231,7 @@ stars.forEach((star) => {
     selectedRating = star.dataset.value;
     resetStars();
     highlightStars(selectedRating);
-    checkUserRatingLimit(selectedRating);
+    submitRating(selectedRating);
   });
 });
 
@@ -253,70 +252,24 @@ function highlightStars(limit) {
   });
 }
 
-function checkUserRatingLimit(rating) {
-  const userId = "user123"; // Here you can use real user ID (e.g., Firebase Auth user)
-  const now = new Date();
-
-  db.collection("user_ratings").doc(userId).get()
-    .then((doc) => {
-      if (doc.exists) {
-        const ratings = doc.data().ratings;
-        const recentRatings = ratings.filter(r => (now - r.timestamp) < 24 * 60 * 60 * 1000); // Last 24 hours
-        if (recentRatings.length < 5) {
-          // Allow rating
-          submitRating(rating, userId, recentRatings);
-        } else {
-          showError("You have already rated 5 times in the last 24 hours.");
-        }
-      } else {
-        // First-time user, allow rating
-        submitRating(rating, userId, []);
-      }
-    })
-    .catch((err) => {
-      console.error("Error checking rating limit:", err);
-      showError("You already rate us 5 times today.");
-    });
-}
-
-function showError(message) {
-  errorMessage.textContent = message;
-  errorMessage.style.display = "block";
-  setTimeout(() => {
-    errorMessage.style.display = "none";
-  }, 5000);
-}
-
-function submitRating(rating, userId, recentRatings) {
-  const now = new Date();
-  recentRatings.push({ rating: parseInt(rating), timestamp: now });
-
-  // Update user's ratings list in Firestore
-  db.collection("user_ratings").doc(userId).set({
-    ratings: recentRatings
+function submitRating(rating) {
+  db.collection("ratings").add({
+    rating: parseInt(rating),
+    createdAt: new Date()
   })
   .then(() => {
-    // Save the rating in the main collection for stats
-    db.collection("ratings").add({
-      rating: parseInt(rating),
-      createdAt: now
-    })
-    .then(() => {
-      // Show the success pop-up message
-      message.style.display = "block";
-      setTimeout(() => {
-        message.style.display = "none";
-      }, 5000);
-      errorMessage.textContent = "";
-    });
+    message.style.display = "block";
+    setTimeout(() => {
+      message.style.display = "none";
+    }, 3000);
   })
   .catch((err) => {
-    console.error("Error saving rating:", err);
+    console.error("Error saving rating:", err.message);
     alert("Failed to submit rating");
   });
 }
 
-// Real-time rating count and average
+// 🔄 Real-time rating count and average
 db.collection("ratings").onSnapshot(snapshot => {
   const ratings = snapshot.docs.map(doc => doc.data().rating);
   const count = ratings.length;
