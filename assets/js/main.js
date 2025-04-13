@@ -261,7 +261,7 @@ function submitRating(rating) {
     message.style.display = "block";
     setTimeout(() => {
       message.style.display = "none";
-    }, 3000);
+    }, 5000);
   })
   .catch((err) => {
     console.error("Error saving rating:", err.message);
