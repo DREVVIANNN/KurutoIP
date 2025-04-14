@@ -212,67 +212,100 @@ function toggleChat() {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-const stars = document.querySelectorAll(".star");
-const message = document.getElementById("message");
-const ratingStats = document.getElementById("ratingStats");
-let selectedRating = 0;
+const stars = document.querySelectorAll('.star');
+const ratingCountEl = document.getElementById('ratingCount');
+const averageRatingDisplay = document.getElementById('averageRatingDisplay');
 
-stars.forEach((star) => {
-  star.addEventListener("mouseover", () => {
-    resetStars();
-    highlightStars(star.dataset.value);
+// Real-time average rating
+firebase.firestore().collection("ratings").onSnapshot(snapshot => {
+  const ratings = [];
+  snapshot.forEach(doc => {
+    const data = doc.data();
+    if (data.rating) ratings.push(data.rating);
   });
 
-  star.addEventListener("mouseout", () => {
-    resetStars(selectedRating);
+  const totalRatings = ratings.length;
+  const average = ratings.reduce((a, b) => a + b, 0) / totalRatings || 0;
+  const roundedAvg = (Math.round(average * 10) / 10).toFixed(1);
+  averageRatingDisplay.textContent = `⭐ ${roundedAvg} of ${totalRatings} rating${totalRatings !== 1 ? 's' : ''}`;
+});
+
+stars.forEach((star, index) => {
+  star.addEventListener('mouseover', () => {
+    if (localStorage.getItem('hasRated')) return;
+    highlightStars(index + 1, true);
   });
 
-  star.addEventListener("click", () => {
-    selectedRating = star.dataset.value;
-    resetStars();
-    highlightStars(selectedRating);
-    submitRating(selectedRating);
+  star.addEventListener('mouseout', () => {
+    if (localStorage.getItem('hasRated')) {
+      highlightStars(parseInt(localStorage.getItem('userRating')));
+    } else {
+      resetStars();
+    }
+  });
+
+  star.addEventListener('click', () => {
+    if (localStorage.getItem('hasRated')) {
+      showPopup('error', '❌ You have already rated!');
+      return;
+    }
+
+    const rating = index + 1;
+
+    localStorage.setItem('hasRated', true);
+    localStorage.setItem('userRating', rating);
+
+    db.collection('ratings').add({
+      rating: rating,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(() => {
+      highlightStars(rating);
+      disableStarEvents();
+      showPopup('success', `✅ You rated ${rating} star${rating > 1 ? 's' : ''}`);
+    }).catch((error) => {
+      console.error("Error saving to Firestore:", error);
+      showPopup('error', '⚠️ Failed to submit rating.');
+    });
   });
 });
 
-function resetStars(selected = 0) {
-  stars.forEach((s) => {
-    s.classList.remove("hovered", "selected");
-    if (s.dataset.value <= selected) {
-      s.classList.add("selected");
+function disableStarEvents() {
+  stars.forEach(star => {
+    star.style.pointerEvents = 'none'; // disables all interaction
+    star.classList.remove('hovered');  // remove hover effect if any
+    star.classList.add('disabled');
+  });
+}
+
+function highlightStars(count, isHover = false) {
+  stars.forEach((star, i) => {
+    if (i < count) {
+      star.classList.add(isHover ? 'hovered' : 'selected');
+      if (!isHover) star.classList.remove('hovered');
+    } else {
+      star.classList.remove('hovered', 'selected');
     }
   });
 }
 
-function highlightStars(limit) {
-  stars.forEach((s) => {
-    if (s.dataset.value <= limit) {
-      s.classList.add("hovered");
-    }
+function resetStars() {
+  stars.forEach(star => {
+    star.classList.remove('hovered', 'selected');
   });
 }
 
-function submitRating(rating) {
-  db.collection("ratings").add({
-    rating: parseInt(rating),
-    createdAt: new Date()
-  })
-  .then(() => {
-    message.style.display = "block";
-    setTimeout(() => {
-      message.style.display = "none";
-    }, 5000);
-  })
-  .catch((err) => {
-    console.error("Error saving rating:", err.message);
-    alert("Failed to submit rating");
-  });
+
+function showPopup(type, message) {
+  const popup = document.getElementById(`${type}Popup`);
+  popup.textContent = message;
+  popup.classList.add('show');
+
+  setTimeout(() => {
+    popup.classList.remove('show');
+  }, 3000);
 }
 
-// 🔄 Real-time rating count and average
-db.collection("ratings").onSnapshot(snapshot => {
-  const ratings = snapshot.docs.map(doc => doc.data().rating);
-  const count = ratings.length;
-  const avg = count ? (ratings.reduce((a, b) => a + b, 0) / count).toFixed(1) : 0;
-  ratingStats.innerHTML = `⭐ Average Rating: <strong>${avg}</strong> from ${count} rating${count !== 1 ? 's' : ''}`;
-});
+const hasRated = localStorage.getItem('hasRated');
+if (hasRated) {
+  highlightStars(parseInt(localStorage.getItem('userRating')));
+}

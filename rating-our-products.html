@@ -69,7 +69,7 @@
                         <span>Syarat Dan Ketentuan</span>
                      </a>
 
-                     <a href="#" class="sidebar__link active-link">
+                     <a href="announcement.html" class="sidebar__link">
                         <i class="ri-megaphone-fill"></i>
                         <span>Announcement</span>
                      </a>
@@ -80,16 +80,16 @@
                   <h3 class="sidebar__title">More</h3>
 
                   <div class="sidebar__list">
-                    <a href="contact-us.html" class="sidebar__link">
-                       <i class="ri-send-plane-fill"></i>
-                       <span>Contact Us</span>
-                    </a>
+                     <a href="contact-us.html" class="sidebar__link">
+                        <i class="ri-send-plane-fill"></i>
+                        <span>Contact Us</span>
+                     </a>
 
-                    <a href="rating-our-products.html" class="sidebar__link">
-                     <i class="ri-star-fill"></i>
-                     <span>Ratings</span>
-                  </a>
-                 </div>
+                     <a href="rating-our-products.html" class="sidebar__link active-link">
+                        <i class="ri-star-fill"></i>
+                        <span>Ratings</span>
+                     </a>
+                  </div>
                </div>
             </div>
 
@@ -112,12 +112,17 @@
              </div>
             </a>
 
-         <h1>Announcement</h1>
+         <h1>Ratings</h1>
 
-         <p>Stay up to date with the latest news, updates, and events from <br> 
-            the <strong>InPanels Team</strong>. Whether it’s a special event, or discount in the shop.</p>
+         <div class="announcement">
+            <img class="profile-photo" src="a8h32d9gg8gda9g-d8wgfdhh0ad-0-=2hr.jpg" alt="">
+            <div class="content">
+              <div class="username"><i class="ri-pushpin-fill"></i> @DREVVIANN <i class="ri-verified-badge-fill"></i></div>
+              <div class="message">Selamat datang!, hari ini no promo ya!, admin lagi butuh pemasukan. ayo di beli tangan kanannya!</div>
+            </div>
+          </div>
 
-             <!-- Chat trigger -->
+           <!-- Chat trigger -->
         <button class="chat-btn" onclick="toggleChat()">💬 Ask InP</button>
 
         <!-- Chat popup -->
@@ -137,52 +142,28 @@
              </div>
          </div>
 
-         <div class="announcement">
-            <img class="profile-photo" src="a8h32d9gg8gda9g-d8wgfdhh0ad-0-=2hr.jpg" alt="">
-            <div class="content">
-              <div class="username"><i class="ri-pushpin-fill"></i> @DREVVIANN <i class="ri-verified-badge-fill"></i></div>
-              <div class="message">Selamat datang!, hari ini no promo ya!, admin lagi butuh pemasukan. ayo di beli tangan kanannya!</div>
+         <div class="rating-container">
+            <h2>Rate Our Product</h2>
+            <div class="stars" id="stars">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
             </div>
+            <div id="averageRatingDisplay" class="rating-summary">⭐ 0.0 of 0 ratings</div>
           </div>
-
-         <div class="announcement">
-            <img class="profile-photo" src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="">
-            <div class="content">
-              <div class="username">@System <i class="ri-verified-badge-fill"></i></div>
-              <div class="message">The 50% OFF Ram Unlimited has ended. thanks for buying!</div>
-            </div>
-          </div>
-
-         <div class="announcement">
-            <img class="profile-photo" src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="">
-            <div class="content">
-              <div class="username">@System <i class="ri-verified-badge-fill"></i></div>
-              <div class="message">🛒 Hurry! RAM Unlimited! 50% OFF! Visit the shop and grab the deal before it's gone!</div>
-            </div>
-          </div>
-
-         <div class="announcement">
-            <img class="profile-photo" src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="">
-            <div class="content">
-              <div class="username">@System <i class="ri-verified-badge-fill"></i></div>
-              <div class="message">Server is back online.</div>
-            </div>
-          </div>
-
-         <div class="announcement">
-            <img class="profile-photo" src="inpanelslogoanimationloading-ezgif.com-video-to-gif-converter.gif" alt="">
-            <div class="content">
-              <div class="username">@System <i class="ri-verified-badge-fill"></i></div>
-              <div class="message">Welcome to InPanels Official Websites. start buy a panel for supporting us making this bussiness bigger than now.</div>
-            </div>
-          </div>
+          
+          <!-- Popups -->
+         <div id="successPopup" class="popup-message success">✅ Rating submitted successfully!</div>
+         <div id="errorPopup" class="popup-message error">❌ You have already rated!</div>
 
         <img class="home-banner" src="a82ghh8et7g2gdaf9990juekl20jeobn-removebg-preview.png" alt="" class="banner">
       </main>
       
       <!--=============== MAIN JS ===============-->
-      <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
       <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
       <script src="assets/js/main.js"></script>
    </body>

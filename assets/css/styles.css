@@ -1112,96 +1112,100 @@ form#contact-form button:hover {
 }
 
 .stars {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #ccc;
   display: flex;
   justify-content: center;
   gap: 10px;
-  font-size: 2rem;
-  cursor: pointer;
+  margin-bottom: 1rem;
 }
 
-.star {
-  color: #ccc;
-  transition: all 0.3s ease;
-}
-
-.star:hover,
 .star.hovered,
 .star.selected {
   color: gold;
   transform: scale(1.2);
+  transition: 0.2s;
 }
 
-  .submit-message {
-    margin-top: 15px;
-    font-weight: bold;
-    color: #2b9348;
-    display: none;
-    width: max-content;
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
+.popup-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.popup-message.success {
+  border: 2px solid #2ecc71;
+  color: #2ecc71;
+}
+
+.popup-message.error {
+  border: 2px solid #e74c3c;
+  color: #e74c3c;
+}
+
+.popup-message.show {
+  opacity: 1;
+  pointer-events: auto;
+  animation: slideDown 0.4s ease, slideUp 0.5s ease 2.5s forwards;
+}
+
+.reset-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.reset-btn:hover {
+  background-color: #e67e22;
+}
+
+.rating-summary {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+  color: #333;
+}
+
+.star.disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+
+@keyframes slideDown {
+  from {
+    top: -50px;
     opacity: 0;
-    animation: showPopup 3s ease-in-out forwards, hidePopup 3s ease-out forwards 3s;
   }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
 
-  .error-message {
-    margin-top: 15px;
-    font-weight: bold;
-    color: #f44336;
-    display: none;
-    width: 70%;
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
+@keyframes slideUp {
+  to {
+    top: -50px;
     opacity: 0;
-    animation: showPopup 3s ease-in-out forwards, hidePopup 3s ease-out forwards 3s;
   }
-
-  .rating-stats {
-    font-size: 16px;
-    color: #555;
-    margin-top: 20px;
-  }
-
-  /* Pop-up animation */
-  @keyframes showPopup {
-    0% {
-      top: -50px;
-      opacity: 0;
-    }
-    50% {
-      top: 30px;
-      opacity: 1;
-    }
-    100% {
-      top: 0;
-      opacity: 1;
-    }
-  }
-
-  /* Slide-out upwards */
-  @keyframes hidePopup {
-    0% {
-      top: 0;
-      opacity: 1;
-    }
-    100% {
-      top: -50px;
-      opacity: 0;
-    }
-  }
+}
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 456px) {
