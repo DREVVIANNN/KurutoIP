@@ -309,3 +309,78 @@ const hasRated = localStorage.getItem('hasRated');
 if (hasRated) {
   highlightStars(parseInt(localStorage.getItem('userRating')));
 }
+
+const commentForm = document.getElementById("commentForm");
+const commentsContainer = document.getElementById("commentsContainer");
+
+// Submit comment
+commentForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById('username').value.trim();
+  const comment = document.getElementById('comment').value.trim();
+
+  if (!username || !comment) {
+    alert('Please enter all fields');
+    return;
+  }
+
+  const forbidden = ['drevviann', 'kuruto'];
+  if (forbidden.includes(username.toLowerCase())) {
+    alert('Username not allowed.');
+    return;
+  }
+
+  try {
+    await db.collection('comments').add({
+      username,
+      comment,
+      timestamp: new Date()
+    });
+    commentForm.reset();
+  } catch (error) {
+    alert('Error submitting comment: ' + error.message);
+  }
+});
+
+db.collection("comments")
+  .orderBy("timestamp", "desc")
+  .onSnapshot((snapshot) => {
+    commentsContainer.innerHTML = ""; // clear existing
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+
+      const commentDiv = document.createElement("div");
+      commentDiv.className = "comment-box";
+
+      commentDiv.innerHTML = `
+        <strong>${sanitize(data.username)}</strong> 
+        <small>${data.timestamp?.toDate().toLocaleString() || "Just now"}</small>
+        <p>${sanitize(data.comment)}</p>
+        <hr />
+      `;
+
+      commentsContainer.appendChild(commentDiv);
+    });
+  });
+
+// Simple HTML sanitizer
+function sanitize(text) {
+  const div = document.createElement("div");
+  div.innerText = text;
+  return div.innerHTML;
+}
+
+  
+
+
+// Sanitize to prevent XSS
+function sanitize(text) {
+  return text.replace(/[&<>"'`=\/]/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;',
+    '"': '&quot;', "'": '&#39;', '/': '&#x2F;',
+    '=': '&#x3D;', '`': '&#x60;'
+  }[c]));
+}
+

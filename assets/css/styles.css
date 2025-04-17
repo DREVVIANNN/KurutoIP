@@ -1206,6 +1206,150 @@ form#contact-form button:hover {
     opacity: 0;
   }
 }
+
+#commentSection {
+  max-width: 600px;
+  margin: auto;
+  width: 100%;
+  padding: 20px;
+  color: #1e1e1e;
+  margin-top: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.comments-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Sleek, modern comment box */
+.comment-box {
+  background: linear-gradient(135deg, #f5f7fa, #e2e8f0); /* Light gradient */
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #007BFF;
+  transition: all 0.3s ease;
+}
+
+.comment-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Username style */
+.comment-box strong {
+  display: block;
+  font-size: 16px;
+  color: #1a202c;
+  font-weight: 600;
+}
+
+/* Timestamp style */
+.comment-box small {
+  color: #718096;
+  font-size: 12px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Text style */
+.comment-box p {
+  margin: 0;
+  color: #2d3748;
+  line-height: 1.5;
+}
+
+/* Container that holds all comments */
+.scrollable-comments-container {
+  max-height: 360px; /* Adjust based on your comment-box height (~160px each) */
+  overflow-y: auto;
+  box-shadow: 0px 4px 8px #dddddd;
+  border-radius: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: #1DA1F2 transparent;
+  padding-right: 8px;
+  margin-bottom: 1.5rem;
+}
+
+/* Optional custom scrollbar (for Webkit browsers) */
+.scrollable-comments-container::-webkit-scrollbar {
+  width: 1px;
+}
+.scrollable-comments-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollable-comments-container::-webkit-scrollbar-thumb {
+  background-color: #1DA1F2;
+  width: 1px;
+  border-radius: 6px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .comment-box {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  .scrollable-comments-container {
+    max-height: 300px;
+  }
+}
+
+
+.commentItem {
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #fff;
+  border-radius: 8px;
+  border-left: 4px solid #0af;
+}
+
+.commentItem .name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.commentItem .time {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+#commentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#commentForm input, #commentForm textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: #fff;
+  color: #333;
+  border: 1px #718096 solid;
+  resize: none;
+}
+
+#commentForm button {
+  align-self: flex-end;
+  padding: 8px 14px;
+  border: none;
+  width: max-content;
+  border-radius: 6px;
+  background: #0af;
+  color: white;
+  cursor: pointer;
+}
+
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 456px) {
