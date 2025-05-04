@@ -73,7 +73,7 @@ window.onload = function() {
             document.getElementById("content").classList.add("fade-in"); // Fade in content
         }, 1000); // Wait for the fade-out transition (1s)
         
-    }, Infinity); // 3100ms = 3.1 seconds
+    }, 9999999999999999999999999999999999999); // 3100ms = 3.1 seconds
 };
 
 function toggleChat() {
